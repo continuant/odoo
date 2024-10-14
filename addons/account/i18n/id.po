@@ -3085,7 +3085,7 @@ msgstr "Saldo"
 #: code:addons/account/static/src/js/legacy_account_selection.js:0
 #, python-format
 msgid "Balance Sheet"
-msgstr "Lembar Saldo"
+msgstr "Neraca Keuangan"
 
 #. module: account
 #. odoo-python
@@ -9723,6 +9723,12 @@ msgid "Never"
 msgstr "Tidak pernah"
 
 #. module: account
+#: code:addons/account/models/account_tax.py:0
+#, python-format
+msgid "Nested group of taxes are not allowed."
+msgstr "Nested group of taxes tidak diizinkan."
+
+#. module: account
 #: model:ir.model.fields,field_description:account.field_account_setup_bank_manual_config__new_journal_name
 msgid "New Journal Name"
 msgstr "New Journal Name"
@@ -14146,6 +14152,8 @@ msgid ""
 "The country of the foreign VAT number could not be detected. Please assign a"
 " country to the fiscal position or set a country group"
 msgstr ""
+"Negara angka PPN asing tidak dapat dideteksi. Silakan tugaskan negara ke "
+"posisi fiskal atau tetapkan negara kelompok"
 
 #. module: account
 #: model:ir.model.fields,help:account.field_account_tax_group__country_id
@@ -15272,6 +15280,15 @@ msgid ""
 msgstr ""
 "Jurnal ini sudah berisi artikel, oleh karena itu Anda tidak dapat mengubah "
 "perusahaannya."
+
+#. module: account
+#. odoo-python
+#: code:addons/account/models/account_journal.py:0
+#, python-format
+msgid ""
+"This journal is associated with a payment method. You cannot archive it"
+msgstr ""
+"Jurnal ini terkait dengan metode pembayaran. Anda tidak dapat mengarsipnya"
 
 #. module: account
 #. odoo-python
@@ -16792,6 +16809,8 @@ msgid ""
 "You cannot create a fiscal position with a country outside of the selected "
 "country group."
 msgstr ""
+"Anda tidak dapat membuat posisi fiskal dengan negara di luar kelompok negara"
+" terpilih."
 
 #. module: account
 #: code:addons/account/models/partner.py:0

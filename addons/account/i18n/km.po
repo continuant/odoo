@@ -9301,6 +9301,12 @@ msgid "Never"
 msgstr "មិននែរ"
 
 #. module: account
+#: code:addons/account/models/account_tax.py:0
+#, python-format
+msgid "Nested group of taxes are not allowed."
+msgstr ""
+
+#. module: account
 #: model:ir.model.fields,field_description:account.field_account_setup_bank_manual_config__new_journal_name
 msgid "New Journal Name"
 msgstr "ឈ្មោះទិនានុប្បវត្តិថ្មី"
@@ -14587,6 +14593,14 @@ msgid ""
 "company."
 msgstr ""
 "ទិនានុប្បវត្តិនេះមានធាតុរួចហើយដូច្នេះអ្នកមិនអាចកែប្រែក្រុមហ៊ុនរបស់ខ្លួន។"
+
+#. module: account
+#. odoo-python
+#: code:addons/account/models/account_journal.py:0
+#, python-format
+msgid ""
+"This journal is associated with a payment method. You cannot archive it"
+msgstr ""
 
 #. module: account
 #. odoo-python

@@ -9652,6 +9652,12 @@ msgid "Never"
 msgstr "Никогда"
 
 #. module: account
+#: code:addons/account/models/account_tax.py:0
+#, python-format
+msgid "Nested group of taxes are not allowed."
+msgstr ""
+
+#. module: account
 #: model:ir.model.fields,field_description:account.field_account_setup_bank_manual_config__new_journal_name
 msgid "New Journal Name"
 msgstr "Новое название журнала"
@@ -15179,6 +15185,14 @@ msgid ""
 "company."
 msgstr ""
 "Этот журнал уже содержит элементы, поэтому вы не можете изменить компанию."
+
+#. module: account
+#. odoo-python
+#: code:addons/account/models/account_journal.py:0
+#, python-format
+msgid ""
+"This journal is associated with a payment method. You cannot archive it"
+msgstr ""
 
 #. module: account
 #. odoo-python

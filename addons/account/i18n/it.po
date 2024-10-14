@@ -9766,6 +9766,12 @@ msgid "Never"
 msgstr "Mai"
 
 #. module: account
+#: code:addons/account/models/account_tax.py:0
+#, python-format
+msgid "Nested group of taxes are not allowed."
+msgstr "I gruppi di imposte nidificati non sono consentiti."
+
+#. module: account
 #: model:ir.model.fields,field_description:account.field_account_setup_bank_manual_config__new_journal_name
 msgid "New Journal Name"
 msgstr "Nuovo nome registro"
@@ -15361,6 +15367,16 @@ msgid ""
 msgstr ""
 "Impossibile modificare l'azienda, questo registro contiene già dei "
 "movimenti."
+
+#. module: account
+#. odoo-python
+#: code:addons/account/models/account_journal.py:0
+#, python-format
+msgid ""
+"This journal is associated with a payment method. You cannot archive it"
+msgstr ""
+"Questo registro è associato a un metodo di pagamento. Non è possibile "
+"archiviarlo"
 
 #. module: account
 #. odoo-python

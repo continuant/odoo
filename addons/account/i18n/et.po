@@ -28,6 +28,8 @@
 # Leaanika Randmets, 2023
 # Eneli Õigus <enelioigus@gmail.com>, 2024
 # Birgit Vijar, 2024
+# Stevin Lilla, 2024
+# Tairi Tiimann, 2024
 # Anna, 2024
 # 
 msgid ""
@@ -7780,7 +7782,7 @@ msgstr "Kehtetu majandusaasta viimane päev"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_move_line__tax_tag_invert
 msgid "Invert Tags"
-msgstr ""
+msgstr "Siltide ümberpööramine"
 
 #. module: account
 #: model:account.account.tag,name:account.account_tag_investing
@@ -9551,6 +9553,12 @@ msgid "Never"
 msgstr "Mitte kunagi"
 
 #. module: account
+#: code:addons/account/models/account_tax.py:0
+#, python-format
+msgid "Nested group of taxes are not allowed."
+msgstr ""
+
+#. module: account
 #: model:ir.model.fields,field_description:account.field_account_setup_bank_manual_config__new_journal_name
 msgid "New Journal Name"
 msgstr "Uue kande nimetus"
@@ -10075,7 +10083,7 @@ msgstr "Printida saab vaid arveid"
 #: model:ir.model.fields,help:account.field_account_payment_register__group_payment
 msgid ""
 "Only one payment will be created by partner (bank), instead of one per bill."
-msgstr ""
+msgstr "Partner (pank) loob ainult ühe makse, mitte iga arve kohta eraldi."
 
 #. module: account
 #: model:ir.model.fields,help:account.field_res_company__period_lock_date
@@ -11166,6 +11174,8 @@ msgid ""
 "Prefix that defines which accounts from the financial accounting this "
 "applicability should apply on."
 msgstr ""
+"Prefiks, mis määrab, millistele finantsarvestuse kontodele see kehtivus "
+"rakendub."
 
 #. module: account
 #: model:ir.model.fields,help:account.field_account_analytic_distribution_model__account_prefix
@@ -12012,7 +12022,7 @@ msgstr "Müügiarvete/ostuarvete sobitamise reegel"
 #: model:ir.model.fields.selection,name:account.selection__account_reconcile_model__rule_type__writeoff_suggestion
 #: model:ir.model.fields.selection,name:account.selection__account_reconcile_model_template__rule_type__writeoff_suggestion
 msgid "Rule to suggest counterpart entry"
-msgstr ""
+msgstr "Reegel vastaspoolse kande soovitamiseks"
 
 #. module: account
 #: model:ir.model,name:account.model_account_reconcile_model_line
@@ -13603,7 +13613,7 @@ msgstr "Maksude mall"
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_move_line__term_key
 msgid "Term Key"
-msgstr ""
+msgstr "Termini võti"
 
 #. module: account
 #: model:ir.model.fields,field_description:account.field_account_payment_term__line_ids
@@ -13880,6 +13890,8 @@ msgid ""
 "The country of the foreign VAT number could not be detected. Please assign a"
 " country to the fiscal position or set a country group"
 msgstr ""
+"Käibemaksukohuslase numbri põhjal ei suudetud riiki tuvastada. Palun määra "
+"riik finantspositsioonile või määra riikide grupp"
 
 #. module: account
 #: model:ir.model.fields,help:account.field_account_tax_group__country_id
@@ -14927,6 +14939,14 @@ msgid ""
 msgstr ""
 "Andmik sisaldab juba kanderidasid, seega  ei saa muuta enam seotud "
 "ettevõtet."
+
+#. module: account
+#. odoo-python
+#: code:addons/account/models/account_journal.py:0
+#, python-format
+msgid ""
+"This journal is associated with a payment method. You cannot archive it"
+msgstr ""
 
 #. module: account
 #. odoo-python
@@ -16376,6 +16396,7 @@ msgid ""
 "You cannot create a fiscal position with a country outside of the selected "
 "country group."
 msgstr ""
+"Ei saa luua finantspositsiooni riigiga väljaspool valitud riikide gruppi."
 
 #. module: account
 #: code:addons/account/models/partner.py:0

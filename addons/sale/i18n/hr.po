@@ -29,6 +29,7 @@
 # Vladimir Vrgoč, 2024
 # Alen Komljen, 2024
 # Gordana Bilas, 2024
+# Kristina Palaš, 2024
 # Luka Carević <luka@uvid.hr>, 2024
 # 
 msgid ""
@@ -546,6 +547,10 @@ msgid ""
 "                            Draft invoices for this order will be cancelled. <br/>\n"
 "                        </span>"
 msgstr ""
+"<span>Jeste li sigurni da želite otkazati ovu narudžbu? <br/></span>\n"
+"                        <span id=\"display_invoice_alert\" attrs=\"{'invisible': [('display_invoice_alert', '=', False)]}\">\n"
+"                            Nacrti računa za ovu narudžbu bit će otkazani. <br/>\n"
+"                        </span>"
 
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.sale_order_portal_template
@@ -3229,7 +3234,7 @@ msgstr "Odbij ovu ponudu"
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_cancel__render_model
 msgid "Rendering Model"
-msgstr ""
+msgstr "Model renderiranja"
 
 #. module: sale
 #: model:ir.ui.menu,name:sale.menu_sale_report
@@ -4064,6 +4069,10 @@ msgid ""
 "to \"Ordered quantities\". Please update your deposit product to be able to "
 "create a deposit invoice."
 msgstr ""
+"Proizvod koji se koristi za izdavanje računa predujma mora imati postavljenu"
+" politiku izdavanja računa na \"Naručene količine\". Molimo vas da ažurirate"
+" postavke vašeg proizvoda za predujam kako biste omogućili izdavanje računa "
+"za predujam."
 
 #. module: sale
 #. odoo-python

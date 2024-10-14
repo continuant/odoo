@@ -9752,6 +9752,12 @@ msgid "Never"
 msgstr "Nooit"
 
 #. module: account
+#: code:addons/account/models/account_tax.py:0
+#, python-format
+msgid "Nested group of taxes are not allowed."
+msgstr "Geneste groepen btw zijn niet toegestaan."
+
+#. module: account
 #: model:ir.model.fields,field_description:account.field_account_setup_bank_manual_config__new_journal_name
 msgid "New Journal Name"
 msgstr "Nieuwe dagboeknaam"
@@ -15337,6 +15343,15 @@ msgid ""
 msgstr ""
 "Dit dagboek bevat al regels; het is niet meer mogelijk het bedrijf te "
 "wijzigen."
+
+#. module: account
+#. odoo-python
+#: code:addons/account/models/account_journal.py:0
+#, python-format
+msgid ""
+"This journal is associated with a payment method. You cannot archive it"
+msgstr ""
+"Dit dagboek is gekoppeld aan een betaalmethode. Je kunt het niet archiveren"
 
 #. module: account
 #. odoo-python
