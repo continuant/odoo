@@ -1365,6 +1365,19 @@ class AccountMove(models.Model):
                                 max_tax_group['formatted_tax_group_amount'] = formatLang(self.env, max_tax_group['tax_group_amount'], currency_obj=move.currency_id)
                         totals['amount_total'] += rounding_amount
                         totals['formatted_amount_total'] = formatLang(self.env, totals['amount_total'], currency_obj=move.currency_id)
+                if move.tax_totals:
+                    totals = move.tax_totals
+                    currency = move.currency_id
+                    if currency.is_zero(totals.get('amount_total', 0.0)):
+                        totals['amount_total'] = 0.0
+                        totals['formatted_amount_total'] = formatLang(self.env, 0.0, currency_obj=currency)
+                    if currency.is_zero(totals.get('amount_untaxed', 0.0)):
+                        totals['amount_untaxed'] = 0.0
+                        totals['formatted_amount_untaxed'] = formatLang(self.env, 0.0, currency_obj=currency)
+                    for subtotal in totals.get('subtotals', []):
+                        if currency.is_zero(subtotal.get('amount', 0.0)):
+                            subtotal['amount'] = 0.0
+                            subtotal['formatted_amount'] = formatLang(self.env, 0.0, currency_obj=currency)
             else:
                 # Non-invoice moves don't support that field (because of multicurrency: all lines of the invoice share the same currency)
                 move.tax_totals = None
@@ -1514,7 +1527,7 @@ class AccountMove(models.Model):
     @api.depends('company_id', 'partner_id', 'tax_totals', 'currency_id')
     def _compute_partner_credit_warning(self):
         for move in self:
-            move.with_company(move.company_id)
+            move = move.with_company(move.company_id)
             move.partner_credit_warning = ''
             show_warning = move.state == 'draft' and \
                            move.move_type == 'out_invoice' and \
@@ -4686,7 +4699,7 @@ class AccountMove(models.Model):
                 line[2]['partner_id'] = self.env['res.partner'].browse(line[2]['partner_id']).sudo().display_name
             line[2]['account_id'] = self.env['account.account'].browse(line[2]['account_id']).display_name or _('Destination Account')
             line[2]['debit'] = currency_id and formatLang(self.env, line[2]['debit'], currency_obj=currency_id) or line[2]['debit']
-            line[2]['credit'] = currency_id and formatLang(self.env, line[2]['credit'], currency_obj=currency_id) or line[2]['debit']
+            line[2]['credit'] = currency_id and formatLang(self.env, line[2]['credit'], currency_obj=currency_id) or line[2]['credit']
         return preview_vals
 
     def _generate_qr_code(self, silent_errors=False):

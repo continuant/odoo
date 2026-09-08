@@ -63,7 +63,7 @@ EAS_MAPPING = {
     'EE': {'9931': 'vat'},
     'ES': {'9920': 'vat'},
     'FI': {'0216': None},
-    'FR': {'0009': 'siret', '9957': 'vat'},
+    'FR': {'0225': 'peppol_endpoint', '0009': 'siret', '9957': 'vat'},  # `peppol_endpoint` used as place holder for custom logic via `_get_peppol_endpoint_value`
     'SG': {'0195': 'l10n_sg_unique_entity_number'},
     'GB': {'9932': 'vat'},
     'GR': {'9933': 'vat'},
@@ -96,6 +96,19 @@ EAS_MAPPING = {
     'SM': {'9951': 'vat'},
     'TR': {'9952': 'vat'},
     'VA': {'9953': 'vat'},
+    # DOM-TOM
+    'BL': {'0009': 'siret', '9957': 'vat', '0002': None},  # Saint Barthélemy
+    'GF': {'0009': 'siret', '9957': 'vat', '0002': None},  # French Guiana
+    'GP': {'0225': 'peppol_endpoint', '0009': 'siret', '9957': 'vat', '0002': None},  # Guadeloupe
+    'MF': {'0009': 'siret', '9957': 'vat', '0002': None},  # Saint Martin
+    'MQ': {'0225': 'peppol_endpoint', '0009': 'siret', '9957': 'vat', '0002': None},  # Martinique
+    'NC': {'0009': 'siret', '9957': 'vat', '0002': None},  # New Caledonia
+    'PF': {'0009': 'siret', '9957': 'vat', '0002': None},  # French Polynesia
+    'PM': {'0009': 'siret', '9957': 'vat', '0002': None},  # Saint Pierre and Miquelon
+    'RE': {'0225': 'peppol_endpoint', '0009': 'siret', '9957': 'vat', '0002': None},  # Réunion
+    'TF': {'0009': 'siret', '9957': 'vat', '0002': None},  # French Southern and Antarctic Lands
+    'WF': {'0009': 'siret', '9957': 'vat', '0002': None},  # Wallis and Futuna
+    'YT': {'0009': 'siret', '9957': 'vat', '0002': None},  # Mayotte
 }
 
 COCONTRACTANT_DEFAULT_NOTE = _('Reverse charge: In the absence of a written objection within one month of receipt of the invoice, '
@@ -176,7 +189,7 @@ class AccountEdiCommon(models.AbstractModel):
 
     def _get_belgian_cocontractant_note(self, invoice, customer):
         if customer.country_id.code == 'BE' and invoice.country_code == 'BE':
-            co_contractant = self.env['account.chart.template'].ref('fiscal_position_template_4', raise_if_not_found=False)
+            co_contractant = self.env['account.chart.template'].with_company(invoice.company_id).ref('fiscal_position_template_4', raise_if_not_found=False)
             if co_contractant and invoice.fiscal_position_id == co_contractant:
                 note = html2plaintext(invoice.fiscal_position_id.note) if invoice.fiscal_position_id.note else ''
                 return note or COCONTRACTANT_DEFAULT_NOTE
@@ -225,6 +238,9 @@ class AccountEdiCommon(models.AbstractModel):
         # add Norway, Iceland, Liechtenstein
         european_economic_area = self.env.ref('base.europe').country_ids.mapped('code') + ['NO', 'IS', 'LI']
 
+        supplier_in_eea = supplier.country_id.code in european_economic_area
+        customer_in_eea = customer.country_id.code in european_economic_area
+
         if customer.country_id.code == 'ES' and customer.zip:
             if customer.zip[:2] in ('35', '38'):  # Canary
                 # [BR-IG-10]-A VAT breakdown (BG-23) with VAT Category code (BT-118) "IGIC" shall not have a VAT
@@ -256,24 +272,23 @@ class AccountEdiCommon(models.AbstractModel):
             else:
                 return create_dict(tax_category_code='S')  # standard VAT
 
-        if supplier.country_id.code in european_economic_area and supplier.vat:
+        if (supplier_in_eea or customer_in_eea) and supplier.vat:
             if tax.amount != 0 and not self._is_reverse_charge_tax(tax):
                 # otherwise, the validator will complain because G and K code should be used with 0% tax
                 # For purchase reverse-charge taxes for self-billed invoices, we put the zero-percent tax
                 # with code 'G' or 'K' that the buyer would have used, see explanation above.
                 return create_dict(tax_category_code='S')
-            if customer.country_id.code not in european_economic_area:
-                return create_dict(
-                    tax_category_code='G',
-                    tax_exemption_reason_code='VATEX-EU-G',
-                    tax_exemption_reason=_('Export outside the EU'),
-                )
-            if customer.country_id.code in european_economic_area:
+            if supplier_in_eea and customer_in_eea:
                 return create_dict(
                     tax_category_code='K',
                     tax_exemption_reason_code='VATEX-EU-IC',
                     tax_exemption_reason=_('Intra-Community supply'),
                 )
+            return create_dict(
+                tax_category_code='G',
+                tax_exemption_reason_code='VATEX-EU-G',
+                tax_exemption_reason=_('Export outside the EU'),
+            )
 
         if tax.amount != 0:
             return create_dict(tax_category_code='S')
@@ -443,12 +458,30 @@ class AccountEdiCommon(models.AbstractModel):
                             'zip': zip_code, 'city': city, 'is_company': True}
             if peppol_eas and peppol_endpoint:
                 partner_vals.update({'peppol_eas': peppol_eas, 'peppol_endpoint': peppol_endpoint})
+            if country_code == 'GB':
+                # While the code is gb, the xml_id is uk
+                country_code = 'UK'
             country = self.env.ref(f'base.{country_code.lower()}', raise_if_not_found=False) if country_code else False
             if country:
                 partner_vals['country_id'] = country.id
             invoice.partner_id = self.env['res.partner'].create(partner_vals)
             if vat and self.env['res.partner']._run_vat_test(vat, country, invoice.partner_id.is_company):
                 invoice.partner_id.vat = vat
+        if not invoice.partner_id or not self.env.context.get('_from_peppol_get_new_documents'):
+            return
+        if peppol_eas and peppol_endpoint:
+            invoice.partner_id.write({'peppol_eas': peppol_eas, 'peppol_endpoint': peppol_endpoint})
+        if not invoice.partner_id.ubl_cii_format:
+            # Set the `ubl_cii_format` to be the same as the imported document
+            for (ubl_cii_format, _label) in invoice.partner_id._fields['ubl_cii_format'].selection:
+                try:
+                    format_partner = self.env['res.partner'].new({'ubl_cii_format': ubl_cii_format})
+                    edi_builder = format_partner.is_peppol_edi_format and format_partner._get_edi_builder()
+                except Exception:  # noqa: BLE001
+                    continue
+                if isinstance(edi_builder, models.AbstractModel) and self._name == edi_builder._name:
+                    invoice.partner_id.ubl_cii_format = ubl_cii_format
+                    break
 
     def _import_retrieve_and_fill_partner_bank_details(self, invoice, bank_details):
         """ Retrieve the bank account, if no matching bank account is found, create it

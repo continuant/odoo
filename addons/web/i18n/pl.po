@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-03 18:40+0000\n"
-"PO-Revision-Date: 2026-07-04 09:42+0000\n"
-"Last-Translator: \"Marta (wacm)\" <wacm@odoo.com>\n"
+"PO-Revision-Date: 2026-08-03 20:58+0000\n"
+"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
 "Language-Team: Polish <https://translate.odoo.com/projects/odoo-17/web/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -290,8 +290,8 @@ msgid ""
 msgstr ""
 "<span class=\"w-100 o_force_ltr\" itemprop=\"streetAddress\">77 Santa "
 "Barbara\n"
-"                                       Rd<br/>Pleasant Hill CA 94523<br/"
-">United States</span>"
+"                                       Rd<br/>Pleasant Hill CA 94523<br/>"
+"United States</span>"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
@@ -3130,9 +3130,8 @@ msgid ""
 "your work is saved before you exit this tab."
 msgstr ""
 "Uwaga! Ostatnio wprowadzone zmiany są zbyt duże, by mogły zostać zapisane "
-"automatycznie. Kliknij teraz przycisk <i class=\"fa fa-cloud-upload fa-"
-"fw\"></i>, aby upewnić się, że praca została zapisana przed zamknięciem tej "
-"karty."
+"automatycznie. Kliknij teraz przycisk <i class=\"fa fa-cloud-upload fa-fw\">"
+"</i>, aby upewnić się, że praca została zapisana przed zamknięciem tej karty."
 
 #. module: web
 #. odoo-javascript
@@ -3355,6 +3354,8 @@ msgid ""
 "Install Odoo on your device to access it easily. Here are the steps to "
 "follow:"
 msgstr ""
+"Zainstaluj Odoo na swoim urządzeniu, aby mieć do niego łatwy dostęp. Oto "
+"kroki, które należy wykonać:"
 
 #. module: web
 #. odoo-javascript
@@ -4214,7 +4215,7 @@ msgstr "Pole modelu"
 #: code:addons/web/static/src/views/fields/char/char_field.js:0
 #, python-format
 msgid "Model reference field"
-msgstr ""
+msgstr "Pole referencji modelu"
 
 #. module: web
 #. odoo-javascript
@@ -4956,8 +4957,8 @@ msgid ""
 "Only types %(supported_types)s are supported for category (found type "
 "%(field_type)s)"
 msgstr ""
-"Tylko typy %(supported_types)s są obsługiwane dla kategorii (znaleziony typ "
-"%(field_type)s)"
+"Tylko typy %(supported_types)s są obsługiwane dla kategorii (znaleziony typ %"
+"(field_type)s)"
 
 #. module: web
 #. odoo-python
@@ -4967,8 +4968,8 @@ msgid ""
 "Only types %(supported_types)s are supported for filter (found type "
 "%(field_type)s)"
 msgstr ""
-"Tylko typy %(supported_types)s są obsługiwane dla filtra (znaleziony typ "
-"%(field_type)s)"
+"Tylko typy %(supported_types)s są obsługiwane dla filtra (znaleziony typ %"
+"(field_type)s)"
 
 #. module: web
 #. odoo-javascript
@@ -5597,7 +5598,7 @@ msgstr "Malina"
 #: code:addons/web/static/src/views/debug_items.js:0
 #, python-format
 msgid "Raw Record Data: %s(%s)"
-msgstr ""
+msgstr "Surowe dane rekordów: %s(%s)"
 
 #. module: web
 #. odoo-javascript
@@ -6786,7 +6787,7 @@ msgstr "Wybrane pole zostanie użyte do wstępnego wypełnienia podpisu"
 #: code:addons/web/static/src/core/utils/files.js:0
 #, python-format
 msgid "The selected file (%sB) is over the maximum allowed file size (%sB)."
-msgstr ""
+msgstr "Wybrany plik (%sB) przekracza maksymalny dozwolony rozmiar pliku (%sB)."
 
 #. module: web
 #. odoo-javascript
@@ -7219,7 +7220,7 @@ msgstr ""
 #: code:addons/web/static/src/views/form/form_status_indicator/form_status_indicator.xml:0
 #, python-format
 msgid "Unable to save. Correct the issue or discard changes"
-msgstr ""
+msgstr "Nie można było zapisać. Popraw błąd lub odrzuć zmiany."
 
 #. module: web
 #. odoo-javascript
@@ -7547,7 +7548,7 @@ msgstr "Pokaż Metadane"
 #: code:addons/web/static/src/views/debug_items.js:0
 #, python-format
 msgid "View Raw Record Data"
-msgstr ""
+msgstr "Wyświetl surowe dane rekordu"
 
 #. module: web
 #. odoo-javascript
@@ -29902,112 +29903,112 @@ msgstr "ココ"
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 #, python-format
 msgid "サ"
-msgstr ""
+msgstr "サ"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 #, python-format
 msgid "割"
-msgstr ""
+msgstr "割"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 #, python-format
 msgid "可"
-msgstr ""
+msgstr "可"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 #, python-format
 msgid "合"
-msgstr ""
+msgstr "合"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 #, python-format
 msgid "営"
-msgstr ""
+msgstr "営"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 #, python-format
 msgid "得"
-msgstr ""
+msgstr "得"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 #, python-format
 msgid "指"
-msgstr ""
+msgstr "指"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 #, python-format
 msgid "月"
-msgstr ""
+msgstr "月"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 #, python-format
 msgid "有"
-msgstr ""
+msgstr "有"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 #, python-format
 msgid "満"
-msgstr ""
+msgstr "満"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 #, python-format
 msgid "無"
-msgstr ""
+msgstr "無"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 #, python-format
 msgid "申"
-msgstr ""
+msgstr "申"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 #, python-format
 msgid "祝"
-msgstr ""
+msgstr "祝"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 #, python-format
 msgid "禁"
-msgstr ""
+msgstr "禁"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 #, python-format
 msgid "秘"
-msgstr ""
+msgstr "秘"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 #, python-format
 msgid "空"
-msgstr ""
+msgstr "空"
 
 #, python-format
 #~ msgid "00"
